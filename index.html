@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no">  
+  <title>Sequence Animation</title>
+  <link href="css/form-seq.css" rel="stylesheet" media="all">
+  <link rel="stylesheet" href="  https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <style>
+
+
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+$(function() {
+
+
+  var observer = new MutationObserver(function(mutations) {
+    if($('#sequence').hasClass("seq-step1"))
+    {
+      $("#prev").hide();
+    } else
+    {
+      $("#prev").show();
+    }
+  });
+  
+  var target = document.querySelector('#sequence');
+  observer.observe(target, {
+    attributes: true,
+  });
+
+});
+
+$( document ).ready(function() {
+
+// Get the Sequence element
+var sequenceElement = document.getElementById("sequence");
+
+// Place your Sequence options here to override defaults
+// See: http://sequencejs.com/documentation/#options
+var options = {
+startingStepAnimatesIn: true,
+autoPlay: true,
+autoPlayPauseOnHover: false,
+autoPlayInterval: 3000,
+/* Make this the same as the animateCanvasDuration */
+phaseThreshold: 5,
+animateCanvasDuration: 5,
+hideStepsUntilPreloaded: true,
+reverseWhenNavigatingBackwards: false,
+fadeStepWhenSkipped: false,
+cycle: false
+}
+
+// Launch Sequence on the element, and with the options we specified above
+var mySequence = sequence(sequenceElement, options);
+
+
+
+// When autoPlay is stopped
+mySequence.animationStarted = function() {
+
+if (mySequence.currentStepId % 2 == 0) {
+    
+      mySequence.start();
+
+  } else {
+      
+      mySequence.stop();
+  }
+
+}
+
+
+
+
+});
+  </script>
+</head>
+<header>
+
+</header>
+
+<body>
+  <nav class="navbar">
+    <button type="button" class="seq-prev" id="prev"> <i class="fa fa-chevron-left"></i></button>
+    
+<img class="logo" src="img/logo.png" alt="Logo - Tagline copy content">
+</nav>
+  <div id="sequence" class="seq">
+
+    <div class="seq-screen">
+      <ul class="seq-canvas">
+        <!-- Slide 1 -->
+        <li class="seq-step1" id="step1">
+          <div class="seq-content">
+            <div>
+           <img class="load-anim" src="img/rocket.gif" alt="You're on your way to helping your ED">
+            </div>
+            <h2 data-seq class="seq-title">Slide One Title</h2>
+            <h3 data-seq class="seq-subtitle">Slide One Subtitle</h3>
+          </div>
+        </li>
+        <!-- Slide 2 -->
+        <li class="seq-step2" id="step2">
+          <div class="seq-content">
+            <h2 data-seq class="seq-title">Slide Two Question</h2>
+            <div class="list-group">
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 1</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 2</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 3</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action" >Answer 4</button>
+            </div>
+          </div>
+        </li>
+        <!-- Slide 3 -->
+        <li class="seq-step3" id="step3">
+          <div class="seq-content">
+            <div>
+              <img class="load-anim" src="img/rocket.gif" alt="You're on your way to helping your ED">
+               </div>
+            <h2 data-seq class="seq-title">Slide Three Title</h2>
+            <h3 data-seq class="seq-subtitle">Slide Three Subtitle</h3>
+          </div>
+        </li>
+        <!--Slide 4-->
+        <li class="seq-step4" id="step4">
+          <div class="seq-content">
+            <h2 data-seq class="seq-title">Slide Four Question</h2>
+            <div class="list-group">
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 1</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 2</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 3</button>
+              <button data-seq type="select" class="seq-next seq-subtitle list-group-item list-group-item-action">Answer 4</button>
+            </div>
+          </div>
+        </li>
+        <!-- Slide 5 -->
+        <li class="seq-step5" id="step5">
+          <div class="seq-content">
+            <div>
+              <img class="load-anim" src="img/rocket.gif" alt="You're on your way to helping your ED">
+               </div>
+            <h2 data-seq class="seq-title">Slide Three Title</h2>
+            <h3 data-seq class="seq-subtitle">Slide Three Subtitle...</h3>
+          </div>
+        </li>
+        <!-- Slide 6 -->
+        <li class="seq-step6" id="step6">
+          <div class="seq-content">
+            <h2 data-seq class="seq-title">Complete your registration.</h2>
+            <div class="form-container">
+              <form>
+                <div class="seq-subtitle form-row">
+                  <div class="seq-subtitle form-group col-md-12">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid city.
+                    </div>
+                  </div>
+                  <div class="seq-subtitle form-group col-md-12">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid city.
+                    </div>
+                  </div>
+                  <div class="form-group state">
+                    <label for="state">State</label>
+                    <select class="form-control" id="state" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                      <option value="Alabama">Alabama</option>  
+                      <option value="Arizona">Arizona</option>  
+                      <option value="Arkansas">Arkansas</option>  
+                      <option value="California">California</option>  
+                      <option value="Colorado">Colorado</option>  
+                      <option value="Connecticut">Connecticut</option>  
+                      <option value="Delaware">Delaware</option>  
+                      <option value="District Of Columbia">District Of Columbia</option>  
+                      <option value="Florida">Florida</option>  
+                      <option value="Georgia">Georgia</option>
+                      <option value="Hawaii">Hawaii</option>  
+                      <option value="Idaho">Idaho</option>  
+                      <option value="Illinois">Illinois</option>  
+                      <option value="Indiana">Indiana</option>  
+                      <option value="Iowa">Iowa</option>  
+                      <option value="Kansas">Kansas</option>  
+                      <option value="Kentucky">Kentucky</option>  
+                      <option value="Maine">Maine</option> 
+                      <option value="Maryland">Maryland</option>  
+                      <option value="Massachusetts">Massachusetts</option>  
+                      <option value="Michigan">Michigan</option>  
+                      <option value="Mississippi">Mississippi</option>  
+                      <option value="Missouri">Missouri</option>  
+                      <option value="Montana">Montana</option>  
+                      <option value="Nebraska">Nebraska</option>  
+                      <option value="Nevada">Nevada</option>  
+                      <option value="New Hampshire">New Hampshire</option>  
+                      <option value="New Jersey">New Jersey</option>
+                      <option value="New Mexico">New Mexico</option> 
+                      <option value="New York">New York</option>  
+                      <option value="North Carolina">North Carolina</option>  
+                      <option value="North Dakota">North Dakota</option> 
+                      <option value="Ohio">Ohio</option>  
+                      <option value="Oklahoma">Oklahoma</option>  
+                      <option value="Oregon">Oregon</option>  
+                      <option value="Pennsylvania">Pennsylvania</option>
+                      <option value="Rhode Island">Rhode Island</option>
+                      <option value="South Dakota">South Dakota</option>  
+                      <option value="Tennessee">Tennessee</option>  
+                      <option value="Texas">Texas</option>  
+                      <option value="Utah">Utah</option>  
+                      <option value="Vermont">Vermont</option>  
+                      <option value="Virginia">Virginia</option>  
+                      <option value="Washington">Washington</option>  
+                      <option value="West Virginia">West Virginia</option>   
+                      <option value="Wisconsin">Wisconsin</option>  
+                      <option value="Wyoming">Wyoming</option>  
+                    </select>
+                  </div>
+                  <div>
+                    <p class="disclaimer">* Disclaimer text content area.
+                    </p>
+                  </div>
+                </div>
+                <button type="submit" class="seq-subtitle seq-button btn">Register</button>
+              </form>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-text">
+    Already have an account? 
+    <a href="http://kevin.lucidnature.com" alt="Placeholder - Sign In" target="_blank" rel="noopener" class="footer-link">Sign In</a> <br>
+    Copyright © 2020 <a href="http://kevin.lucidnature.com" alt="Placeholder" target="_blank" rel="noopener" class="footer-link">kevin.lucidnature.com</a></div>
+  
+  <script src="scripts/imagesloaded.pkgd.min.js"></script>
+  <script src="scripts/hammer.min.js"></script>
+  <script src="scripts/sequence.min.js"></script>
+  <script src="scripts/form-seq.js"></script>
+</body>
+</html>
